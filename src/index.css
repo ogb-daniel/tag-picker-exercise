@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* Colours. Light by default. The "dark" class on <html> turns on dark mode. */
+:root {
+  --background: #f4f4f6;
+  --surface: #ffffff;
+  --surface-2: #ececf0;
+  --border: #e1e1e6;
+  --foreground: #1b1b1f;
+  --muted: #3a3a40;
+  --muted-2: #55555c;
+  --primary: #2f6fed;
+  --primary-soft: #e3ecfd;
+  --primary-hover: #1d5cd6;
+  --danger: #c0392b;
+  --success: #27ae60;
+  --success-soft: #e8f8ef;
+  color-scheme: light;
+}
+:root.dark {
+  --background: #141518;
+  --surface: #1e1f23;
+  --surface-2: #27282d;
+  --border: #3a3b42;
+  --foreground: #f2f2f5;
+  --muted: #b0b1b8;
+  --muted-2: #92939b;
+  --primary: #7aa5ff;
+  --primary-soft: #1f2a44;
+  --primary-hover: #94b8ff;
+  --danger: #ef6f60;
+  --success: #4cd787;
+  --success-soft: #1a2e22;
+  color-scheme: dark;
+}
+
+/* Tailwind names for the colours: bg-surface, text-muted-2, border-border... */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-hover: var(--primary-hover);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth tag pill animations */
+@keyframes pill-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes pill-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+.pill-enter {
+  animation: pill-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.pill-exit {
+  animation: pill-out 0.15s ease-out forwards;
+}
+
+/* Dropdown animations */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.dropdown-enter {
+  animation: dropdown-in 0.15s ease-out forwards;
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  from { width: 0; }
+}
+.progress-animate {
+  animation: progress-fill 0.3s ease-out;
+}
+
+/* Drag ghost styling */
+.dragging {
+  opacity: 0.5;
+}
+.drag-over {
+  transform: scale(1.05);
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-2);
+}
+
+/* Focus visible ring */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Highlight match in search */
+.search-highlight {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 2px;
+  padding: 0 1px;
+}
